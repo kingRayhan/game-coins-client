@@ -14,7 +14,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ["@/plugins/veevalidate"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -23,15 +23,35 @@ export default {
   buildModules: ["@nuxtjs/tailwindcss"],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/buefy
-    "nuxt-buefy",
-    // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios"
-  ],
+  modules: ["nuxt-buefy", "@nuxtjs/axios", "@nuxtjs/auth"],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: process.env.NUXT_APP_API_URL
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/auth/login",
+            method: "post",
+            propertyName: "access_token"
+          },
+          user: {
+            url: "/auth/user"
+          }
+        }
+      }
+    },
+
+    redirect: {
+      login: "/auth/login",
+      logout: "/auth/login",
+      home: "/dashboard"
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}

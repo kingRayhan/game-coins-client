@@ -1,7 +1,7 @@
 <template>
   <div class="card rounded">
     <figure class="image is-5by4">
-      <n-link to="{ name: 'id', params: { _id: title } }"
+      <n-link :to="{ name: 'items-id', params: { _id: 'ddd' } }"
         ><img :src="thumbnail"
       /></n-link>
     </figure>
