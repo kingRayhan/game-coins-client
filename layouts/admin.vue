@@ -29,14 +29,19 @@ export default {
     return {
       items: [
         {
-          title: "Home",
-          icon: "home",
-          to: { name: "index" }
+          title: "Dashboard",
+          icon: "view-dashboard",
+          to: "/dashboard"
         },
         {
-          title: "Inspire",
+          title: "Games",
           icon: "lightbulb",
-          to: { name: "inspire" }
+          to: "/dashboard/games"
+        },
+        {
+          title: "Orders",
+          icon: "lightbulb",
+          to: "/dashboard/orders"
         }
       ]
     };

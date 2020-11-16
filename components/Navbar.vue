@@ -22,7 +22,7 @@
       </b-navbar-item>
 
       <b-navbar-item tag="div" v-if="$auth.loggedIn">
-        <nuxt-link to="dashboard">
+        <nuxt-link to="/dashboard">
           <b-icon icon="view-dashboard" size="is-small" class="mr-1"> </b-icon>
           Dashboard
         </nuxt-link>
