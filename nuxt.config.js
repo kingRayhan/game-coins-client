@@ -14,7 +14,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ["@/plugins/veevalidate"],
+  plugins: ["@/plugins/veevalidate", "@/plugins/DataTable"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -28,6 +28,9 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.NUXT_APP_API_URL
+  },
+  env: {
+    apiUrl: process.env.NUXT_APP_API_URL
   },
 
   auth: {

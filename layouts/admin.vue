@@ -35,12 +35,12 @@ export default {
         },
         {
           title: "Games",
-          icon: "lightbulb",
+          icon: "nintendo-game-boy",
           to: "/dashboard/games"
         },
         {
           title: "Orders",
-          icon: "lightbulb",
+          icon: "currency-bdt",
           to: "/dashboard/orders"
         }
       ]
