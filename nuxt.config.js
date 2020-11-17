@@ -30,7 +30,7 @@ export default {
     baseURL: process.env.NUXT_APP_API_URL
   },
   env: {
-    apiUrl: process.env.NUXT_APP_API_URL
+    NUXT_APP_API_URL: process.env.NUXT_APP_API_URL
   },
 
   auth: {

@@ -30,6 +30,7 @@
 </template>
 <script>
 export default {
+  //https://codepen.io/ratiw/pen/opWQKR?editors=1010
   layout: "admin",
   middleware: "authenticated",
   data() {
