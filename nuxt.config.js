@@ -27,7 +27,7 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: process.env.NUXT_APP_API_URL
+    baseURL: process.env.NUXT_APP_API_URL || "https://game-coins.herokuapp.com"
   },
   env: {
     NUXT_APP_API_URL: process.env.NUXT_APP_API_URL
