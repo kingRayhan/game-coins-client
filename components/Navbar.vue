@@ -9,12 +9,6 @@
       </b-navbar-item>
     </template>
 
-    <template slot="start">
-      <b-navbar-item>
-        Cara tercepat dan termudah untuk pembelian kredit permainan.
-      </b-navbar-item>
-    </template>
-
     <template slot="end">
       <b-navbar-item tag="div" v-if="$auth.loggedIn">
         <b-icon icon="account" size="is-small" class="mr-1"> </b-icon>
