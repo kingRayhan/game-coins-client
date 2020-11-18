@@ -1,115 +1,102 @@
 <template>
   <div>
-    <nav class="level">
-      <!-- Left side -->
+    <div class="level">
       <div class="level-left">
-        <div class="level-item">
-          <h2>
-            <b-icon icon="nintendo-game-boy" />
-            <span class="text-3xl">Games</span>
-          </h2>
-        </div>
+        <h2 class="text-3xl uppercase">All games</h2>
       </div>
-
-      <!-- Right side -->
       <div class="level-right">
-        <p class="level-item">
-          <nuxt-link
-            class="button is-success"
-            :to="{ name: 'dashboard-games-new' }"
-          >
-            New
-          </nuxt-link>
-        </p>
+        <nuxt-link
+          :to="{ name: 'dashboard-games-new' }"
+          class="button is-primary"
+        >
+          <b-icon icon="plus" /> <span>New Game</span>
+        </nuxt-link>
       </div>
-    </nav>
+    </div>
 
     <b-table
-      :data="data"
-      :columns="columns"
-      :bordered="true"
-      :per-page="3"
+      :data="items"
+      :loading="loading"
+      bordered
       paginated
+      backend-pagination
+      :per-page="perPage"
+      :total="total"
+      @page-change="onPageChange"
     >
+      <b-table-column label="Id" sortable v-slot="props">
+        {{ props.row.id }}
+      </b-table-column>
+
+      <b-table-column label="Title" sortable v-slot="props">
+        {{ props.row.title }}
+      </b-table-column>
+
+      <b-table-column label="Slug" sortable v-slot="props">
+        {{ props.row.slug }}
+      </b-table-column>
+
+      <b-table-column label="Thumbnail" sortable v-slot="props">
+        <img
+          v-if="props.row.thumbnail"
+          :src="props.row.thumbnail"
+          alt="thumbnail"
+          class="w-24 h-24 rounded"
+        />
+      </b-table-column>
+
+      <b-table-column label="Actions" sortable v-slot="props">
+        <b-button @click="destroy(props.row)">
+          <b-icon icon="trash-can" type="is-danger" />
+        </b-button>
+
+        <nuxt-link
+          :to="{
+            name: 'dashboard-games-slug',
+            params: { slug: props.row.slug }
+          }"
+          class="button"
+        >
+          <b-icon icon="lead-pencil" type="is-primary" />
+        </nuxt-link>
+      </b-table-column>
     </b-table>
   </div>
 </template>
+
 <script>
 export default {
   layout: "admin",
-  middleware: "authenticated",
   data() {
     return {
-      data: [
-        {
-          id: 1,
-          first_name: "Jesse",
-          last_name: "Simmons",
-          date: "2016-10-15 13:43:27",
-          gender: "Male"
-        },
-        {
-          id: 2,
-          first_name: "John",
-          last_name: "Jacobs",
-          date: "2016-12-15 06:00:53",
-          gender: "Male"
-        },
-        {
-          id: 3,
-          first_name: "Tina",
-          last_name: "Gilbert",
-          date: "2016-04-26 06:26:28",
-          gender: "Female"
-        },
-        {
-          id: 4,
-          first_name: "Clarence",
-          last_name: "Flores",
-          date: "2016-04-10 10:28:46",
-          gender: "Male"
-        },
-        {
-          id: 5,
-          first_name: "Anne",
-          last_name: "Lee",
-          date: "2016-12-06 14:38:38",
-          gender: "Female"
-        }
-      ],
-      columns: [
-        {
-          field: "id",
-          label: "ID",
-          width: "40",
-          numeric: true
-        },
-        {
-          field: "first_name",
-          label: "First Name"
-        },
-        {
-          field: "last_name",
-          label: "Last Name"
-        },
-        {
-          field: "date",
-          label: "Date",
-          centered: true
-        },
-        {
-          field: "gender",
-          label: "Gender"
-        }
-      ]
+      items: [],
+      currentPage: 1,
+      perPage: 15,
+      total: 0,
+      loading: false
     };
   },
+  async mounted() {
+    this.loadData();
+  },
   methods: {
-    edit(row) {
-      alert(JSON.stringify(row));
+    async loadData() {
+      this.loading = true;
+      const items = await this.$axios.$get(
+        `games?limit=${this.perPage}&page=${this.currentPage}`
+      );
+      this.loading = false;
+      this.items = items.data;
+      this.total = items.meta.totalItems;
     },
-    destroy(row) {
-      alert(JSON.stringify(row));
+    onPageChange(page) {
+      this.currentPage = page;
+      this.loadData();
+    },
+    async destroy(row) {
+      if (!confirm("Sure to delete?")) return;
+      await this.$axios.$delete(`games/${row.id}`);
+      this.loadData();
     }
   }
 };

@@ -114,8 +114,20 @@
 export default {
   layout: "admin",
   middleware: "authenticated",
+  async mounted() {
+    const { data } = await this.$axios.get(`games/${this.$route.params.slug}`);
+    const { id, title, slug, body, thumbnail, cover, coins } = data;
+
+    this.id = id;
+    this.title = title;
+    this.body = body;
+    this.thumbnail = thumbnail;
+    this.cover = cover;
+    this.coins = coins.map(({ label, price }) => ({ label, price }));
+  },
   data() {
     return {
+      id: "",
       cover: "",
       thumbnail: "",
       coins: [{ label: "", price: 0 }],
@@ -125,7 +137,7 @@ export default {
   },
   methods: {
     async handleSave() {
-      await this.$axios.$post("games", {
+      await this.$axios.$put(`games/${this.id}`, {
         title: this.title,
         body: this.body,
         coins: this.coins,
