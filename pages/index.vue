@@ -8,9 +8,26 @@
         :key="item.id"
         class="col-span-6 md:col-span-3"
       >
-        <Item :thumbnail="item.thumbnail" :title="item.name" />
+        <Item :thumbnail="item.thumbnail" :title="item.title" />
       </div>
     </div>
+
+    <b-pagination
+      :total="total"
+      v-model="current"
+      :per-page="perPage"
+      @change="changePage"
+      aria-next-label="Next page"
+      aria-previous-label="Previous page"
+      aria-page-label="Page"
+      aria-current-label="Current page"
+    >
+    </b-pagination>
+    <b-loading
+      :is-full-page="true"
+      v-model="isLoading"
+      :can-cancel="true"
+    ></b-loading>
   </div>
 </template>
 
@@ -18,57 +35,30 @@
 export default {
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 2,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 3,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 4,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 5,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 6,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 7,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        },
-        {
-          id: 8,
-          name: "Mobile Legends",
-          thumbnail:
-            "https://cdn1.codashop.com/S/content/mobile/images/product-tiles/mlbb_tile.jpg"
-        }
-      ]
+      items: [],
+      currentPage: 1,
+      total: 0,
+      perPage: 12,
+      isLoading: false
     };
+  },
+  mounted() {
+    this.loadData();
+  },
+  methods: {
+    changePage(page) {
+      this.currentPage = page;
+      this.loadData();
+    },
+    async loadData() {
+      this.isLoading = true;
+      const { data, meta } = await this.$axios.$get(
+        `games?limit=${this.perPage}&page=${this.currentPage}`
+      );
+      this.isLoading = false;
+      this.items = data;
+      this.total = meta.totalItems;
+    }
   }
 };
 </script>
