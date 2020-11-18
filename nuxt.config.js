@@ -34,14 +34,17 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: ["@nuxtjs/tailwindcss"],
+  buildModules: [
+    "@nuxtjs/tailwindcss",
+    ["@nuxtjs/dotenv", { systemvars: true }]
+  ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ["nuxt-buefy", "@nuxtjs/axios", "@nuxtjs/auth"],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: process.env.NUXT_APP_API_URL || "https://game-coins.herokuapp.com"
+    baseURL: process.env.NUXT_APP_API_URL
   },
   env: {
     NUXT_APP_API_URL: process.env.NUXT_APP_API_URL
