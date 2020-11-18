@@ -1,9 +1,9 @@
 <template>
   <div class="card rounded">
     <figure class="image is-5by4">
-      <n-link :to="{ name: 'items-id', params: { _id: 'ddd' } }"
-        ><img :src="thumbnail"
-      /></n-link>
+      <nuxt-link :to="{ name: 'items-slug', params: { slug: slug } }">
+        <img :src="thumbnail" />
+      </nuxt-link>
     </figure>
 
     <div class="card-content text-center">
@@ -13,6 +13,6 @@
 </template>
 <script>
 export default {
-  props: ["title", "thumbnail"]
+  props: ["title", "thumbnail", "slug"]
 };
 </script>

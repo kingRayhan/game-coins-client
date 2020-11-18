@@ -56,7 +56,11 @@ export default {
       try {
         await this.$auth.loginWith("local", { data: this.form });
       } catch (error) {
-        console.log(errors);
+        this.$buefy.snackbar.open({
+          message: "Invalid Credential",
+          type: "is-danger",
+          position: "is-top"
+        });
       }
     }
   }

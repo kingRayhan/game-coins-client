@@ -8,7 +8,11 @@
         :key="item.id"
         class="col-span-6 md:col-span-3"
       >
-        <Item :thumbnail="item.thumbnail" :title="item.title" />
+        <Item
+          :thumbnail="item.thumbnail"
+          :title="item.title"
+          :slug="item.slug"
+        />
       </div>
     </div>
 
