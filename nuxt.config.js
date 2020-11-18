@@ -7,7 +7,15 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
+      // {
+      //   rel: "stylesheet",
+      //   href:
+      //     "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
+      // }
+    ],
+    script: [{ src: "https://widget.cloudinary.com/v2.0/global/all.js" }]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)

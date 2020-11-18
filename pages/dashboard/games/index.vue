@@ -1,90 +1,115 @@
 <template>
   <div>
-    <DataTable
-      api-url="https://vuetable.ratiw.net/api/users"
-      :fields="fields"
-      pagination-path=""
-      :per-page="20"
-      :sort-order="sortOrder"
-      @vuetable:pagination-data="onPaginationData"
-      @vuetable:loading="onLoading"
-      @vuetable:loaded="onLoaded"
-    >
-      <template slot="actions" slot-scope="props">
-        <div class="table-button-container">
-          <button class="button" @click="editRow(props.rowData)">
-            <b-icon icon="trash-can" type="is-danger" />
-          </button>
-          <button class="button" @click="deleteRow(props.rowData)">
-            <b-icon icon="lead-pencil" />
-          </button>
+    <nav class="level">
+      <!-- Left side -->
+      <div class="level-left">
+        <div class="level-item">
+          <h2>
+            <b-icon icon="nintendo-game-boy" />
+            <span class="text-3xl">Games</span>
+          </h2>
         </div>
-      </template>
-    </DataTable>
+      </div>
 
-    <DataTablePagination
-      ref="pagination"
-      @vuetable-pagination:change-page="onChangePage"
-    />
+      <!-- Right side -->
+      <div class="level-right">
+        <p class="level-item">
+          <nuxt-link
+            class="button is-success"
+            :to="{ name: 'dashboard-games-new' }"
+          >
+            New
+          </nuxt-link>
+        </p>
+      </div>
+    </nav>
+
+    <b-table
+      :data="data"
+      :columns="columns"
+      :bordered="true"
+      :per-page="3"
+      paginated
+    >
+    </b-table>
   </div>
 </template>
 <script>
 export default {
-  //https://codepen.io/ratiw/pen/opWQKR?editors=1010
   layout: "admin",
   middleware: "authenticated",
   data() {
     return {
-      sortOrder: [
+      data: [
         {
-          field: "name",
-          sortField: "name",
-          direction: "asc"
+          id: 1,
+          first_name: "Jesse",
+          last_name: "Simmons",
+          date: "2016-10-15 13:43:27",
+          gender: "Male"
+        },
+        {
+          id: 2,
+          first_name: "John",
+          last_name: "Jacobs",
+          date: "2016-12-15 06:00:53",
+          gender: "Male"
+        },
+        {
+          id: 3,
+          first_name: "Tina",
+          last_name: "Gilbert",
+          date: "2016-04-26 06:26:28",
+          gender: "Female"
+        },
+        {
+          id: 4,
+          first_name: "Clarence",
+          last_name: "Flores",
+          date: "2016-04-10 10:28:46",
+          gender: "Male"
+        },
+        {
+          id: 5,
+          first_name: "Anne",
+          last_name: "Lee",
+          date: "2016-12-06 14:38:38",
+          gender: "Female"
         }
       ],
-      fields: [
-        "__handle",
+      columns: [
         {
-          name: "name",
-          title: `<span class="icon orange"><i class="fa fa-user"></i></span> Full Name`,
-          sortField: "name"
+          field: "id",
+          label: "ID",
+          width: "40",
+          numeric: true
         },
         {
-          name: "email",
-          title: "Email",
-          sortField: "email"
+          field: "first_name",
+          label: "First Name"
         },
-        "birthdate",
-        "nickname",
         {
-          name: "gender",
-          title: "Gender",
-          sortField: "gender"
+          field: "last_name",
+          label: "Last Name"
         },
-        "actions"
+        {
+          field: "date",
+          label: "Date",
+          centered: true
+        },
+        {
+          field: "gender",
+          label: "Gender"
+        }
       ]
     };
   },
   methods: {
-    onPaginationData(paginationData) {
-      this.$refs.pagination.setPaginationData(paginationData);
+    edit(row) {
+      alert(JSON.stringify(row));
     },
-    onChangePage(page) {
-      this.$refs.vuetable.changePage(page);
-    },
-    editRow(rowData) {
-      //TODO: Move to edit page
-      alert("You clicked edit on" + JSON.stringify(rowData));
-    },
-    deleteRow(rowData) {
-      //TODO: delete api request
-      alert("You clicked delete on" + JSON.stringify(rowData));
-    },
-    onLoading() {
-      // this.$nuxt.$loading.start();
-    },
-    onLoaded() {
-      // this.$nuxt.$loading.finish();
+    destroy(row) {
+      alert(JSON.stringify(row));
     }
   }
 };
