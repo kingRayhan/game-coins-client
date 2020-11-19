@@ -18,13 +18,9 @@
 
     <b-pagination
       :total="total"
-      v-model="current"
+      v-model="currentPage"
       :per-page="perPage"
       @change="changePage"
-      aria-next-label="Next page"
-      aria-previous-label="Previous page"
-      aria-page-label="Page"
-      aria-current-label="Current page"
     >
     </b-pagination>
     <b-loading
@@ -37,6 +33,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "Project Title"
+    };
+  },
   data() {
     return {
       items: [],

@@ -24,19 +24,14 @@
       :total="total"
       @page-change="onPageChange"
     >
-      <b-table-column label="Id" sortable v-slot="props">
+      <b-table-column label="#ID" v-slot="props" width="120">
         {{ props.row.id }}
       </b-table-column>
-
-      <b-table-column label="Title" sortable v-slot="props">
+      <b-table-column label="Title" v-slot="props">
         {{ props.row.title }}
       </b-table-column>
 
-      <b-table-column label="Slug" sortable v-slot="props">
-        {{ props.row.slug }}
-      </b-table-column>
-
-      <b-table-column label="Thumbnail" sortable v-slot="props">
+      <b-table-column label="Thumbnail" v-slot="props">
         <img
           v-if="props.row.thumbnail"
           :src="props.row.thumbnail"
@@ -45,7 +40,14 @@
         />
       </b-table-column>
 
-      <b-table-column label="Actions" sortable v-slot="props">
+      <b-table-column label="Actions" v-slot="props">
+        <nuxt-link
+          :to="{ name: 'items-slug', params: { slug: props.row.slug } }"
+          class="button"
+        >
+          <b-icon icon="eye" />
+        </nuxt-link>
+
         <b-button @click="destroy(props.row)">
           <b-icon icon="trash-can" type="is-danger" />
         </b-button>

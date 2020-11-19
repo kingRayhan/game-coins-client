@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-12 gap-5 my-12 p-4 md:p-0">
-    <div class="col-span-5">
+    <div class="col-span-12 md:col-span-5">
       <img
         v-if="data.cover"
         class="w-full"
@@ -11,10 +11,10 @@
       <div class="my-4">
         <h2 class="text-3xl">{{ data.title }}</h2>
 
-        <p class="mb-3" v-text="data.body"></p>
+        <p class="mb-3" v-html="data.body"></p>
       </div>
     </div>
-    <div class="col-span-7">
+    <div class="col-span-12 md:col-span-7">
       <b-field>
         <b-input placeholder="Player ID" size="is-large" icon="account">
         </b-input>
@@ -83,6 +83,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: this.data.title
+    };
+  },
   data() {
     return {
       selectedCoin: 0

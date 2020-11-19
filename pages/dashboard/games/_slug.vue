@@ -63,11 +63,7 @@
               :type="errors.length ? 'is-danger' : null"
               :message="errors[0]"
             >
-              <b-input
-                placeholder="Description"
-                v-model="body"
-                type="textarea"
-              />
+              <VueEditor v-model="body" />
             </b-field>
           </ValidationProvider>
 
@@ -111,9 +107,13 @@
   </form>
 </template>
 <script>
+import { VueEditor } from "vue2-editor/dist/vue2-editor.core.js";
 export default {
   layout: "admin",
   middleware: "authenticated",
+  components: {
+    VueEditor
+  },
   async mounted() {
     const { data } = await this.$axios.get(`games/${this.$route.params.slug}`);
     const { id, title, slug, body, thumbnail, cover, coins } = data;
@@ -198,3 +198,9 @@ export default {
   }
 };
 </script>
+<style lang="css">
+@import "vue2-editor/dist/vue2-editor.css";
+@import "quill/dist/quill.core.css";
+@import "quill/dist/quill.bubble.css";
+@import "quill/dist/quill.snow.css";
+</style>
