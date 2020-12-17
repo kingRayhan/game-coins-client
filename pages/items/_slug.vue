@@ -128,6 +128,7 @@ export default {
     this.orderData.game = this.data.title;
     this.orderData.price = this.data.coins[0].price;
     this.orderData.coin = this.data.coins[0].label;
+    this.orderData.gameCover = this.data.cover;
   },
   data() {
     return {
@@ -151,6 +152,7 @@ export default {
   methods: {
     handleProcessCheckout() {
       this.$store.commit("order/SET_ORDER_DATA", this.orderData);
+      this.$router.push("/checkout");
     }
   },
   watch: {

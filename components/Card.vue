@@ -1,14 +1,12 @@
 <template>
-  <div class="column">
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title has-text-grey">
-          {{ title }}
-        </p>
-      </header>
-      <div class="card-content">
-        <slot />
-      </div>
+  <div class="card mb-8">
+    <header class="card-header">
+      <p class="card-header-title has-text-grey">
+        {{ title }}
+      </p>
+    </header>
+    <div class="card-content">
+      <slot />
     </div>
   </div>
 </template>
