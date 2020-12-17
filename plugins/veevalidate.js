@@ -1,7 +1,8 @@
 import Vue from "vue";
-import { ValidationProvider, extend } from "vee-validate";
+import { ValidationProvider, extend, ValidationObserver } from "vee-validate";
 import validator from "validator";
 Vue.component("ValidationProvider", ValidationProvider);
+Vue.component("ValidationObserver", ValidationObserver);
 
 /**
  * --------------------------------------------------
