@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-12 gap-5 my-12 p-4 md:p-0">
-    <div class="col-span-5">
+    <div class="col-span-12 md:col-span-5">
       <Card title="Game info">
         <img
           v-if="orderData.gameCover"
@@ -30,7 +30,7 @@
         > -->
       </Card>
     </div>
-    <div class="col-span-7">
+    <div class="col-span-12 md:col-span-7">
       <ValidationObserver v-slot="{ handleSubmit }">
         <form @submit.prevent="handleSubmit(handleProcessCheckout)">
           <Card title="Your info">
