@@ -9,6 +9,7 @@ Vue.component("ValidationObserver", ValidationObserver);
  *  Validation rules
  * --------------------------------------------------
  */
+
 extend("email", {
   message: "Invalid email address",
   validate: validator.isEmail

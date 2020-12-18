@@ -5,7 +5,7 @@ export const state = () => ({
 export const mutations = {
   SET_ORDER_DATA: (state, data) => (state.orderData = data),
   CLEAR: state => {
-    state.data = {};
+    state.orderData = {};
   }
 };
 
