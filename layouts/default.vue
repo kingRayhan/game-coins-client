@@ -7,5 +7,11 @@
         <nuxt />
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>All right reserved &copy; {{ new Date().getFullYear() }}</p>
+      </div>
+    </footer>
   </div>
 </template>

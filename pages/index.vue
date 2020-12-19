@@ -21,13 +21,8 @@
       v-model="currentPage"
       :per-page="perPage"
       @change="changePage"
-    >
-    </b-pagination>
-    <b-loading
-      :is-full-page="true"
-      v-model="isLoading"
-      :can-cancel="true"
-    ></b-loading>
+    />
+    <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="true" />
   </div>
 </template>
 
@@ -35,7 +30,7 @@
 export default {
   head() {
     return {
-      title: "Project Title"
+      title: `Game`
     };
   },
   data() {
