@@ -90,9 +90,9 @@
                 icon="currency-bdt"
               />
             </b-field>
-            <b-button size="is-small" type="is-danger" @click="removeCoin(i)"
-              >Remove</b-button
-            >
+            <b-button size="is-small" type="is-danger" @click="removeCoin(i)">
+              Remove
+            </b-button>
           </div>
           <b-button
             size="is-small"

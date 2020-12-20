@@ -6,10 +6,10 @@
       </div>
       <div class="level-right">
         <nuxt-link
-          :to="{ name: 'dashboard-games-new' }"
+          :to="{ name: 'dashboard-orders-archieve' }"
           class="button is-primary"
         >
-          <b-icon icon="plus" /> <span>Archieve</span>
+          <span>Archieve</span>
         </nuxt-link>
       </div>
     </div>
