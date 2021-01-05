@@ -43,6 +43,11 @@ export default {
           title: "Orders",
           icon: "currency-bdt",
           to: "/dashboard/orders"
+        },
+        {
+          title: "Admins",
+          icon: "account",
+          to: "/dashboard/users"
         }
       ]
     };
