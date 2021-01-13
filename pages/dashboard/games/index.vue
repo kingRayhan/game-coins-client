@@ -69,6 +69,9 @@
 <script>
 export default {
   layout: "admin",
+  head: {
+    title: "Games"
+  },
   data() {
     return {
       items: [],

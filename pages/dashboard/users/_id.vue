@@ -61,6 +61,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Admins"
+  },
   async mounted() {
     const loading = this.$buefy.loading.open();
     const form = await this.$axios.$get(`users/${this.$route.params.id}`);

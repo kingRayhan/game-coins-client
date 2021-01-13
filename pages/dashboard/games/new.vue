@@ -109,6 +109,9 @@
 <script>
 import { VueEditor } from "vue2-editor/dist/vue2-editor.core.js";
 export default {
+  head: {
+    title: "Create new game"
+  },
   layout: "admin",
   middleware: "authenticated",
   components: {

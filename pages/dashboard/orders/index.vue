@@ -67,6 +67,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Orders"
+  },
   layout: "admin",
   data() {
     return {

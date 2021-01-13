@@ -50,6 +50,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Login"
+  },
   data() {
     return {
       form: {

@@ -83,6 +83,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Update order"
+  },
   name: "order-details",
   layout: "admin",
   async mounted() {

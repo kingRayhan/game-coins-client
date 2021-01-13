@@ -68,7 +68,7 @@
 <script>
 export default {
   head: {
-    title: "Create new title"
+    title: "Create new admin"
   },
   layout: "admin",
   data() {

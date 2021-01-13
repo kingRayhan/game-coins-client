@@ -30,7 +30,7 @@
 export default {
   head() {
     return {
-      title: `Game`
+      title: `Codashop`
     };
   },
   data() {
