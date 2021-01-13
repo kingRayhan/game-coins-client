@@ -57,6 +57,9 @@
 <script>
 export default {
   layout: "admin",
+  head: {
+    title: "Admins"
+  },
   data() {
     return {
       items: [],
@@ -85,7 +88,7 @@ export default {
     },
     async destroy(row) {
       if (!confirm("Sure to delete?")) return;
-      await this.$axios.$delete(`orders/${row.id}`);
+      await this.$axios.$delete(`users/${row.id}`);
       this.loadData();
     }
   }
